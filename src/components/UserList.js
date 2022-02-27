@@ -21,11 +21,11 @@ export default class UserList extends Component {
   getTodoList = () => {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((r) => r.json())
-      .then((result) => console.log("Todo List:", result));
+      .then((result) => this.setState({todoCount:result.length}));
   };
   render() {
     console.log("State:", this.state);
-    const { users, isLoading } = this.state;
+    const { users, isLoading,todoCount } = this.state;
 
     return (
       <div>
@@ -38,7 +38,7 @@ export default class UserList extends Component {
               </div>
             ))}
         <hr />
-        TODO LIST <br />
+        TODO LIST:{todoCount} <br />
         <button onClick={this.getTodoList}>GET TODO LIST</button>
       </div>
     );
